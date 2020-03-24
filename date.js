@@ -24,3 +24,12 @@ export const changeTimeByLang = (lang, hour, minute, second, milisecond) => {
         date.set('millisecond', milisecond);
     return date;
 }
+
+export const dateValidate = (date, day) => {
+    let expectedDate = moment(date);
+
+    if (day != null)
+        expectedDate.add(day, 'day');
+
+    return new Date().toISOString() < expectedDate.toISOString();
+}
