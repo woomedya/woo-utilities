@@ -25,3 +25,23 @@ export const turkishToUpper = function (str) {
     str = str.replace(/(([iışğüçö]))/g, function (letter) { return letters[letter]; })
     return str.toUpperCase();
 }
+
+export const insert = (string, insertData) => {
+    if (insertData && Array.isArray(insertData) && typeof insertData[0] == "string") {
+        insertData.forEach((item, index) => {
+            string = string.replace(new RegExp("\\{" + index + "\\}", "g"), item);
+        });
+
+        return string;
+    } else if (insertData && Array.isArray(insert) && typeof insertData[0] == "object") {
+        insertData.forEach((item) => {
+            string = string.replace(new RegExp("\\{" + item.index + "\\}", "g"), item.value);
+        });
+
+        return string;
+    } else if (insertData != null) {
+        return string.replace(/\{0\}/g, insertData)
+    } else {
+        return string;
+    }
+}
