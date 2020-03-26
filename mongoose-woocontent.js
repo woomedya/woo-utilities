@@ -1,13 +1,13 @@
 const ObjectId = require('mongodb').ObjectId;
 
-var models = {}, mongoose;
+var models = {}, opts = { mongoose };
 
-const init = ({ _mongoose }) => {
-  mongoose = _mongoose;
+const init = ({ mongoose }) => {
+  opts.mongoose = mongoose;
 }
 
 const create = (fieldName) => {
-  model = new mongoose.Schema({
+  model = new opts.mongoose.Schema({
     id: {
       type: String,
       unique: true,
@@ -43,7 +43,7 @@ const create = (fieldName) => {
     }
   });
 
-  models[fieldName] = mongoose.main.model(fieldName, model, fieldName);
+  models[fieldName] = opts.mongoose.main.model(fieldName, model, fieldName);
 
   return models[fieldName]
 }
