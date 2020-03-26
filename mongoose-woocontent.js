@@ -1,6 +1,6 @@
 const ObjectId = require('mongodb').ObjectId;
 
-var models = {}, opts = { mongoose };
+var models = {}, opts = { mongoose: null };
 
 const init = ({ mongoose }) => {
   opts.mongoose = mongoose;
