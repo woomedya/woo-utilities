@@ -1,7 +1,7 @@
 const returnModel = require('./returnModel');
 const wooCrypto = require('woo-crypto');
 
-var opts = { publicKey, privateKey };
+var opts = { publicKey: '', privateKey: '' };
 
 const init = ({
     publicKey, privateKey
