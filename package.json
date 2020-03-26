@@ -1,6 +1,6 @@
 {
   "name": "woo-utilities",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -9,6 +9,7 @@
   "author": "woomedya",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.19.2",
     "moment": "^2.24.0",
     "react-native-iphone-x-helper": "^1.2.1"
   },
