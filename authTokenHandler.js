@@ -15,7 +15,7 @@ const handler = (tokenType) => {
     return async (req, res, next) => {
         var token = req.headers.token;
         if (token) {
-            var decrypted = wooCrypto.default.decrypt(token, opts.publicKey, opts.privateKey) || '';
+            var decrypted = wooCrypto.decrypt(token, opts.publicKey, opts.privateKey) || '';
             var decryptedJSON = JSON.parse(decrypted);
 
             decryptedJSON.type == tokenType && (dateUtil.getUTCTime() < decryptedJSON.expire || decryptedJSON.expire == "") ?
