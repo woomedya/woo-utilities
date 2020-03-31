@@ -1,5 +1,6 @@
 const returnModel = require('./returnModel');
 const wooCrypto = require('woo-crypto');
+const dateUtil = require("./date");
 
 var opts = { publicKey: '', privateKey: '' };
 
@@ -17,7 +18,7 @@ const handler = (tokenType) => {
             var decrypted = wooCrypto.default.decrypt(token, opts.publicKey, opts.privateKey) || '';
             var decryptedJSON = JSON.parse(decrypted);
 
-            decryptedJSON.type == tokenType && (wooUtil.default.date.getUTCTime() < decryptedJSON.expire || decryptedJSON.expire == "") ?
+            decryptedJSON.type == tokenType && (dateUtil.getUTCTime() < decryptedJSON.expire || decryptedJSON.expire == "") ?
                 next() :
                 res.status(403).send(
                     returnModel({

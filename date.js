@@ -1,10 +1,14 @@
-import moment from 'moment';
+const moment = require('moment');
 
-export const getUTCTime = (miliseconds = 0) => {
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+const getUTCTime = exports.getUTCTime = (miliseconds = 0) => {
     return new Date(Date.now() + miliseconds).toISOString();
 }
 
-export const newDateWithTimeZone = (timezone, date) => {
+const newDateWithTimeZone = exports.newDateWithTimeZone = (timezone, date) => {
     date = date ? new Date(date) : new Date();
     if (timezone)
         return new Date(date.toLocaleString('en-US', { timeZone: timezone.name }));
@@ -12,7 +16,7 @@ export const newDateWithTimeZone = (timezone, date) => {
         return date;
 }
 
-export const changeTimeByLang = (lang, hour, minute, second, milisecond) => {
+const changeTimeByLang = exports.changeTimeByLang = (lang, hour, minute, second, milisecond) => {
     var date = moment().locale(lang);
     if (hour)
         date.set('hour', hour);
@@ -25,7 +29,7 @@ export const changeTimeByLang = (lang, hour, minute, second, milisecond) => {
     return date;
 }
 
-export const dateValidate = (date, day) => {
+const dateValidate = exports.dateValidate = (date, day) => {
     let expectedDate = moment(date);
 
     if (day != null)
