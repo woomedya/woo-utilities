@@ -1,4 +1,8 @@
-export const toEngCharsFromTr = (str) => {
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+const toEngCharsFromTr = exports.toEngCharsFromTr = (str) => {
     return str.toLocaleLowerCase().replace(/Ğ/gim, "g")
         .replace(/Ü/gim, "u")
         .replace(/Ş/gim, "s")
@@ -14,19 +18,19 @@ export const toEngCharsFromTr = (str) => {
         .replace(/ç/gim, "c");
 }
 
-export const turkishToLower = function (str) {
+const turkishToLower = exports.turkishToLower = function (str) {
     var letters = { "İ": "i", "I": "ı", "Ş": "ş", "Ğ": "ğ", "Ü": "ü", "Ö": "ö", "Ç": "ç" };
     str = str.replace(/(([İIŞĞÜÇÖ]))/g, function (letter) { return letters[letter]; })
     return str.toLowerCase();
 }
 
-export const turkishToUpper = function (str) {
+const turkishToUpper = exports.turkishToUpper = function (str) {
     var letters = { "i": "İ", "ş": "Ş", "ğ": "Ğ", "ü": "Ü", "ö": "Ö", "ç": "Ç", "ı": "I" };
     str = str.replace(/(([iışğüçö]))/g, function (letter) { return letters[letter]; })
     return str.toUpperCase();
 }
 
-export const insert = (string, insertData) => {
+const insert = exports.insert = (string, insertData) => {
     if (insertData && Array.isArray(insertData) && typeof insertData[0] == "string") {
         insertData.forEach((item, index) => {
             string = string.replace(new RegExp("\\{" + index + "\\}", "g"), item);
