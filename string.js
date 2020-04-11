@@ -49,3 +49,12 @@ const insert = exports.insert = (string, insertData) => {
         return string;
     }
 }
+
+const toTurkishSearchable = exports.insert = (str) => {
+    return str.replace(/[gGğĞ]/gim, "[gGğĞ]")
+        .replace(/[uüUÜ]/gim, "[uüUÜ]")
+        .replace(/[sşSŞ]/gim, "[sşSŞ]")
+        .replace(/[iıIİ]/gim, "[iıIİ]")
+        .replace(/[çÇcC]/gim, "[çÇcC]")
+        .replace(/[OoÖö]/gim, "[OoÖö]")
+}
