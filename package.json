@@ -1,6 +1,6 @@
 {
   "name": "woo-utilities",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -11,10 +11,10 @@
   "dependencies": {
     "axios": "^0.19.2",
     "moment": "^2.24.0",
-    "react-native-iphone-x-helper": "^1.2.1",
     "woo-crypto": "^1.0.2"
   },
   "peerDependencies": {
-    "react-native-onesignal": "^3.6.5"
+    "react-native-onesignal": "^3.6.5",
+    "react-native-iphone-x-helper": "^1.2.1"
   }
 }
