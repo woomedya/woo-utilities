@@ -50,7 +50,7 @@ const insert = exports.insert = (string, insertData) => {
     }
 }
 
-const toTurkishSearchable = exports.insert = (str) => {
+const toTurkishSearchable = exports.toTurkishSearchable = (str) => {
     return str.replace(/[gGğĞ]/gim, "[gGğĞ]")
         .replace(/[uüUÜ]/gim, "[uüUÜ]")
         .replace(/[sşSŞ]/gim, "[sşSŞ]")
