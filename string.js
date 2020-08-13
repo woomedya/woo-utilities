@@ -15,7 +15,8 @@ const toEngCharsFromTr = exports.toEngCharsFromTr = (str) => {
         .replace(/ş/gim, "s")
         .replace(/ı/gim, "i")
         .replace(/ö/gim, "o")
-        .replace(/ç/gim, "c");
+        .replace(/ç/gim, "c")
+        .normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
 
 const turkishToLower = exports.turkishToLower = function (str) {
