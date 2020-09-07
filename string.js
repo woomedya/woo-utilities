@@ -19,6 +19,18 @@ const toEngCharsFromTr = exports.toEngCharsFromTr = (str) => {
         .normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
 
+const simplifyArabic = exports.simplifyArabic = function (str) {
+    var arabicNormChar = {
+        'ك': 'ک', 'ﻷ': 'لا', 'ؤ': 'و', 'ى': 'ی', 'ي': 'ی', 'ئ': 'ی', 'أ': 'ا', 'إ': 'ا', 'آ': 'ا', 'ٱ': 'ا', 'ٳ': 'ا', 'ة': 'ه', 'ء': '', 'ِ': '', 'ْ': '', 'ُ': '', 'َ': '', 'ّ': '', 'ٍ': '', 'ً': '', 'ٌ': '', 'ٓ': '', 'ٰ': '', 'ٔ': '', '�': ''
+    };
+
+    return str.replace(/[^\u0000-\u007E]/g, function (a) {
+        var retval = arabicNormChar[a]
+        if (retval == undefined) { retval = a }
+        return retval;
+    }).normalize('NFKD').toLowerCase();
+}
+
 const turkishToLower = exports.turkishToLower = function (str) {
     var letters = { "İ": "i", "I": "ı", "Ş": "ş", "Ğ": "ğ", "Ü": "ü", "Ö": "ö", "Ç": "ç" };
     str = str.replace(/(([İIŞĞÜÇÖ]))/g, function (letter) { return letters[letter]; })
