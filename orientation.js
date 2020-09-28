@@ -5,10 +5,16 @@ var setStates = [];
 export const manageInitialOrientationState = (setState) => {
     Orientation.getAutoRotateState((AutoRotate) => {
         if (AutoRotate) {
-            var deviceOrientation = Orientation.getInitialOrientation();
-            var result = deviceOrientation == "LANDSCAPE-LEFT" || deviceOrientation == "LANDSCAPE-RIGHT" || deviceOrientation == "PORTRAIT-UPSIDEDOWN";
-            result == false ? Orientation.lockToPortrait() : Orientation.lockToLandscape();
-            setState(result);
+            Orientation.getDeviceOrientation((deviceOrientation) => {
+                var result = deviceOrientation == "LANDSCAPE-LEFT" || deviceOrientation == "LANDSCAPE-RIGHT" || deviceOrientation == "PORTRAIT-UPSIDEDOWN";
+                result == false ? Orientation.lockToPortrait() : Orientation.lockToLandscape();
+                setState(result);
+            });
+        } else {
+            Orientation.getOrientation((deviceOrientation) => {
+                var result = deviceOrientation == "LANDSCAPE-LEFT" || deviceOrientation == "LANDSCAPE-RIGHT" || deviceOrientation == "PORTRAIT-UPSIDEDOWN";
+                setState(result);
+            });
         }
     });
 }
