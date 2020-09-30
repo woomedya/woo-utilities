@@ -2,13 +2,13 @@ import Orientation from 'react-native-orientation-locker';
 
 var setStates = [];
 
+lockByOrientation(Orientation.getInitialOrientation());
+
 export const manageInitialOrientationState = (setState) => {
     Orientation.getAutoRotateState((AutoRotate) => {
         if (AutoRotate) {
             Orientation.getDeviceOrientation((deviceOrientation) => {
-                var result = deviceOrientation == "LANDSCAPE-LEFT" || deviceOrientation == "LANDSCAPE-RIGHT" || deviceOrientation == "PORTRAIT-UPSIDEDOWN";
-                result == false ? Orientation.lockToPortrait() : Orientation.lockToLandscape();
-                setState(result);
+                setState(lockByOrientation(deviceOrientation));
             });
         } else {
             Orientation.getOrientation((deviceOrientation) => {
@@ -19,12 +19,16 @@ export const manageInitialOrientationState = (setState) => {
     });
 }
 
+function lockByOrientation(orientation) {
+    var result = orientation == "LANDSCAPE-LEFT" || orientation == "LANDSCAPE-RIGHT" || orientation == "PORTRAIT-UPSIDEDOWN";
+    result == false ? Orientation.lockToPortrait() : Orientation.lockToLandscape();
+    return result;
+}
+
 const onChange = (deviceOrientation) => {
     Orientation.getAutoRotateState((AutoRotate) => {
         if (AutoRotate) {
-            var result = deviceOrientation == "LANDSCAPE-LEFT" || deviceOrientation == "LANDSCAPE-RIGHT" || deviceOrientation == "PORTRAIT-UPSIDEDOWN";
-            result == false ? Orientation.lockToPortrait() : Orientation.lockToLandscape();
-            setStates.forEach(setState => setState(result));
+            setStates.forEach(setState => setState(lockByOrientation(deviceOrientation)));
         }
     });
 }
