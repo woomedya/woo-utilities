@@ -1,3 +1,4 @@
+import { Dimensions } from 'react-native';
 import Orientation from 'react-native-orientation-locker';
 
 var setStates = [];
@@ -49,4 +50,22 @@ export const getAutoRotate = async () => {
             res(AutoRotate);
         });
     });
+}
+
+export const getWidthHeightByOrientation = (orientation) => {
+    var window = Dimensions.get('screen');
+    var width = window.width;
+    var height = window.height;
+    var large = width < height ? height : width;
+    var small = width < height ? width : height;
+    if (orientation)
+        return {
+            width: large,
+            height: small
+        };
+    else
+        return {
+            width: small,
+            height: large
+        };
 }
