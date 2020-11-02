@@ -35,6 +35,8 @@ const onChange = (deviceOrientation) => {
 }
 
 export const addDeviceOrientationSetState = (setState) => {
+    manageInitialOrientationState(setState);
+
     Orientation.addDeviceOrientationListener(onChange);
     setStates.push(setState);
 }
