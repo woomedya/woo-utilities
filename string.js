@@ -1,3 +1,5 @@
+var unorm = require('./unorm');
+
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
@@ -23,12 +25,11 @@ const simplifyArabic = exports.simplifyArabic = function (str) {
     var arabicNormChar = {
         'ك': 'ک', 'ﻷ': 'لا', 'ؤ': 'و', 'ى': 'ی', 'ي': 'ی', 'ئ': 'ی', 'أ': 'ا', 'إ': 'ا', 'آ': 'ا', 'ٱ': 'ا', 'ٳ': 'ا', 'ة': 'ه', 'ء': '', 'ِ': '', 'ْ': '', 'ُ': '', 'َ': '', 'ّ': '', 'ٍ': '', 'ً': '', 'ٌ': '', 'ٓ': '', 'ٰ': '', 'ٔ': '', '�': ''
     };
-
-    return str.replace(/[^\u0000-\u007E]/g, function (a) {
+    return unorm.nfkd(str).replace(/[^\u0000-\u007E]/g, function (a) {
         var retval = arabicNormChar[a]
         if (retval == undefined) { retval = a }
         return retval;
-    }).normalize('NFKD').toLowerCase();
+    }).toLowerCase();
 }
 
 const turkishToLower = exports.turkishToLower = function (str) {
