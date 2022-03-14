@@ -1,12 +1,19 @@
 const ObjectId = require('mongodb').ObjectId;
 
-var models = {}, opts = { mongoose: null };
+var models = {},
+  opts = {
+    mongoose: null
+  };
 
-const init = ({ mongoose }) => {
+const init = ({
+  mongoose
+}) => {
   opts.mongoose = mongoose;
 }
 
-const create = (fieldName) => {
+const create = (fieldName, dbName = '') => {
+  dbName = dbName || 'main';
+
   model = new opts.mongoose.Schema({
     id: {
       type: String,
@@ -43,14 +50,14 @@ const create = (fieldName) => {
     }
   });
 
-  models[fieldName] = opts.mongoose.main.model(fieldName, model, fieldName);
+  models[fieldName] = opts.mongoose[dbName].model(fieldName, model, fieldName);
 
   return models[fieldName]
 }
 
-const get = (fieldName) => {
+const get = (fieldName, dbName) => {
   if (!models[fieldName])
-    create(fieldName);
+    create(fieldName, dbName);
 
   return models[fieldName];
 }
