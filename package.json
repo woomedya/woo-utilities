@@ -1,6 +1,6 @@
 {
   "name": "woo-utilities",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -14,8 +14,5 @@
     "woo-crypto": "^1.0.2"
   },
   "peerDependencies": {
-    "react-native-onesignal": "^3.6.5",
-    "react-native-iphone-x-helper": "^1.2.1",
-    "react-native-orientation-locker": "^1.2.0"
   }
 }
